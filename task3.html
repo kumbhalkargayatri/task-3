@@ -1,0 +1,48 @@
+<html>
+    <head>
+    	<meta charset="utf-8"/>
+    	<title>HTTP GET_Data </title>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+    <body>
+    	
+    			Name<input type="text" id="name" name="name" /><br>
+    			Marks<input type="text" id="marks" name="marks"/><br>
+    		    <input type="submit" id="btn" value="Submit"/>
+    		</tr>
+    	</table>
+    	
+   		<br><br>
+    	Result : <div id="result" style="border:thin dotted black; height:50px; width:250px"></div>
+    
+        <script> 
+        
+        	$(function(){
+        	 	$("#btn").click(function(){
+        	 		var name = $("#name").val()
+        	 		var marks = $("#marks").val()
+        	 		$.ajax({
+        				 url : 'https://morning-shelf-84536.herokuapp.com/student/gpush',
+        				 type : 'POST',
+        				 data :JSON.stringify( { "name": name, "marks": marks } ),
+        				 contentType: 'application/json',
+        				 dataType : 'json',
+        				 success : function(data){
+        					 $('#result').html(JSON.stringify(data));
+        					 	console.log(data);
+        				 },        				
+        				 error: function (errorThrown) {
+        	                    console.log(errorThrown);
+        	             }
+        			 })
+        		})
+        	});
+        
+        
+        
+        
+	        	       	 
+	           
+        </script>
+     </body>
+</html>
